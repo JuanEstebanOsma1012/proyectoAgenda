@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="446.0" prefWidth="521.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="co.edu.uniquindio.agenda.controller.actualizarCitaController">
+   <children>
+      <Separator layoutY="65.0" prefHeight="1.0" prefWidth="522.0" />
+      <Separator layoutY="137.0" prefHeight="1.0" prefWidth="522.0" />
+      <Separator layoutY="228.0" prefHeight="1.0" prefWidth="522.0" />
+      <Button layoutX="201.0" layoutY="161.0" mnemonicParsing="false" onAction="#agregarGrupoActualizarCita" text="Agregar" />
+      <Button layoutX="201.0" layoutY="190.0" mnemonicParsing="false" onAction="#eliminarGrupoActualizarCita" text="Eliminar" />
+      <Label layoutX="283.0" layoutY="162.0" text="Grupo:" />
+      <TextField fx:id="txtGrupoActualizarCita" layoutX="283.0" layoutY="179.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="40.0" layoutY="158.0" text="Nombre grupo:" />
+      <TextField fx:id="txtNombreGrupoActualizarCita" layoutX="40.0" layoutY="175.0" />
+      <Label layoutX="187.0" layoutY="76.0" text="Fecha:" />
+      <Label layoutX="354.0" layoutY="76.0" text="Hora:" />
+      <TextField fx:id="txtHoraActualizarCita" layoutX="354.0" layoutY="92.0" />
+      <TextField fx:id="txtFechaActualizarCita" layoutX="187.0" layoutY="92.0" />
+      <Button layoutX="201.0" layoutY="330.0" mnemonicParsing="false" onAction="#eliminarContactoActualizarCita" text="Eliminar" />
+      <Button layoutX="40.0" layoutY="368.0" mnemonicParsing="false" onAction="#actualizarCita" text="Actualizar">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="183.0" layoutY="18.0" text="Actualizar cita">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="283.0" layoutY="239.0" text="Contactos:" />
+      <ListView fx:id="listViewContactosActualizarCita" layoutX="283.0" layoutY="256.0" prefHeight="165.0" prefWidth="200.0" />
+      <Button layoutX="201.0" layoutY="301.0" mnemonicParsing="false" onAction="#agregarContactoActualizarCita" text="Agregar" />
+      <TextField fx:id="txtTelefonoContactoActualizarCita" layoutX="40.0" layoutY="317.0" />
+      <Label layoutX="40.0" layoutY="300.0" text="Telefono contacto:" />
+      <TextField fx:id="txtNombreActualizarCita" layoutX="16.0" layoutY="92.0" />
+      <Label layoutX="16.0" layoutY="75.0" text="Nombre:" />
+   </children>
+</AnchorPane>
