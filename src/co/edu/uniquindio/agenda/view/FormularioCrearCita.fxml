@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="431.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenda.controller.crearCitaController">
+   <children>
+      <Label layoutX="16.0" layoutY="65.0" text="Asunto:" />
+      <TextField fx:id="txtAsuntoCrearCita" layoutX="16.0" layoutY="82.0" />
+      <Label layoutX="40.0" layoutY="290.0" text="Nombre contacto:" />
+      <TextField fx:id="txtNombreContactoCrearCita" layoutX="40.0" layoutY="307.0" />
+      <Button layoutX="201.0" layoutY="291.0" mnemonicParsing="false" onAction="#agregarContactoCrearCita" text="Agregar" />
+      <ListView fx:id="listViewContactosCrearCita" layoutX="283.0" layoutY="246.0" prefHeight="165.0" prefWidth="200.0" />
+      <Label layoutX="283.0" layoutY="229.0" text="Contactos:" />
+      <Label layoutX="210.0" layoutY="14.0" text="Crear cita">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <Button layoutX="40.0" layoutY="358.0" mnemonicParsing="false" onAction="#crearCita" text="Crear">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="201.0" layoutY="320.0" mnemonicParsing="false" onAction="#eliminarContactoCrearCita" text="Eliminar" />
+      <TextField fx:id="txtFechaCrearCita" layoutX="187.0" layoutY="82.0" />
+      <TextField fx:id="txtHoraCrearCita" layoutX="354.0" layoutY="82.0" />
+      <Label layoutX="354.0" layoutY="66.0" text="Hora:" />
+      <Label layoutX="187.0" layoutY="66.0" text="Fecha:" />
+      <TextField fx:id="txtNombreGrupoCrearCita" layoutX="40.0" layoutY="165.0" />
+      <Label layoutX="40.0" layoutY="148.0" text="Nombre grupo:" />
+      <TextField fx:id="txtGrupoCrearCita" layoutX="283.0" layoutY="169.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="283.0" layoutY="152.0" text="Grupo:" />
+      <Button layoutX="201.0" layoutY="180.0" mnemonicParsing="false" onAction="#eliminarGrupoCrearCita" text="Eliminar" />
+      <Button layoutX="201.0" layoutY="151.0" mnemonicParsing="false" onAction="#agregarGrupoCrearCita" text="Agregar" />
+      <Separator layoutY="218.0" prefHeight="1.0" prefWidth="522.0" />
+      <Separator layoutY="127.0" prefHeight="1.0" prefWidth="522.0" />
+      <Separator layoutY="55.0" prefHeight="1.0" prefWidth="522.0" />
+   </children>
+</AnchorPane>

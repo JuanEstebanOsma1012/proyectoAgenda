@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="428.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenda.controller.crearContactoController">
+   <children>
+      <Button layoutX="101.0" layoutY="366.0" mnemonicParsing="false" onAction="#crearNuevoContacto" text="Crear">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtNombreContacto" layoutX="36.0" layoutY="95.0" prefHeight="25.0" prefWidth="196.0" />
+      <TextField fx:id="txtEdadContacto" layoutX="36.0" layoutY="151.0" prefHeight="25.0" prefWidth="196.0" />
+      <TextField fx:id="txtTelefonoContacto" layoutX="36.0" layoutY="210.0" prefHeight="25.0" prefWidth="196.0" />
+      <TextField fx:id="txtCorreoContacto" layoutX="36.0" layoutY="267.0" prefHeight="25.0" prefWidth="196.0" />
+      <TextField fx:id="txtDireccionContacto" layoutX="36.0" layoutY="323.0" prefHeight="25.0" prefWidth="196.0" />
+      <Label layoutX="36.0" layoutY="78.0" text="Nombre:" />
+      <Label layoutX="36.0" layoutY="134.0" text="Edad:" />
+      <Label layoutX="35.0" layoutY="193.0" text="Telefono:" />
+      <Label layoutX="36.0" layoutY="250.0" text="Correo:" />
+      <Label layoutX="36.0" layoutY="306.0" text="Direccion:" />
+      <Label layoutX="42.0" layoutY="27.0" text="Crear nuevo contacto">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
