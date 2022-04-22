@@ -69,7 +69,7 @@ public class crearCitaController implements Initializable {
             	contactosProvisionales[indice] = contacto;
             	nombresContactosProvisionales[indice] = contacto.getNombre();
     			
-            	datosNombresContactos.addAll(Utils.filtrarNulos(nombresContactosProvisionales));
+            	datosNombresContactos.setAll(Utils.filtrarNulos(nombresContactosProvisionales));
 			}
     		
 		} catch (Exception e) {
@@ -88,7 +88,7 @@ public class crearCitaController implements Initializable {
 			contactosProvisionales[indice] = null;
 			nombresContactosProvisionales[indice] = null;
 			
-			datosNombresContactos.addAll(Utils.filtrarNulos(nombresContactosProvisionales));
+			datosNombresContactos.setAll(Utils.filtrarNulos(nombresContactosProvisionales));
     		
 		} catch (Exception e) {
 			e.printStackTrace();

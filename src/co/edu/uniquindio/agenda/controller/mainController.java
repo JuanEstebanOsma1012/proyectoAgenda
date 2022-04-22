@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -63,6 +64,9 @@ public class mainController implements Initializable{
 
     @FXML
     private TextField txtNombreGrupoActualizar;
+    
+    @FXML
+    private TextArea txtResultadoFuncionalidades;
     
     @FXML
     private ListView<String> listViewGrupos;
@@ -111,6 +115,77 @@ public class mainController implements Initializable{
 		//desginar modelo de datos de las listas de contactos
 		listViewContactosCita.setItems(datosNombresContactos);
 		listViewContactosGrupo.setItems(datosNombresContactos);
+	}
+	
+	@FXML
+	void funcionalidad1(ActionEvent event){
+		
+		try {
+			txtResultadoFuncionalidades.setText(agenda.mostrarContactosImpares());;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	void funcionalidad2(ActionEvent event){
+		
+		try {
+			txtResultadoFuncionalidades.setText(Integer.toString(agenda.obtenerEdadMasRepetida()));;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	void funcionalidad3(ActionEvent event){
+		
+		try {
+			txtResultadoFuncionalidades.setText(Double.toString(agenda.determinarPromedioEdades()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@FXML
+	void funcionalidad4(ActionEvent event){
+		
+		String mensaje = "";
+		Contacto[] menoresDeEdad = agenda.obtenerMenoresEdad();
+		
+		for (int i = 0; i < menoresDeEdad.length; i++) {
+			mensaje += String.format("%s%n", menoresDeEdad[i].getNombre());
+		}
+		
+		try {
+			txtResultadoFuncionalidades.setText(mensaje);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@FXML
+	void funcionalidad5(ActionEvent event){
+		
+		try {
+			txtResultadoFuncionalidades.setText(Double.toString(agenda.calcularDesviacionEdades()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@FXML
+	void funcionalidad6(ActionEvent event){
+		
+		try {
+			txtResultadoFuncionalidades.setText(agenda.obtenerNombreContactoInvertido());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
     @FXML
@@ -194,7 +269,7 @@ public class mainController implements Initializable{
     	
     	try {
     		
-    		datosContactos.setAll(agenda.getListaContactos());
+    		datosContactos.setAll(Utils.filtrarNulos(agenda.getListaContactos()));
     		datosNombresContactos.setAll(Utils.extraerNombresContactos(Utils.filtrarNulos(agenda.getListaContactos())));
     		
 		} catch (Exception e) {
@@ -240,7 +315,7 @@ public class mainController implements Initializable{
 			
     		try {
     			
-    			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/FormularioActualizarContacto.fxml"));
+    			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/FormularioActualizarGrupo.fxml"));
     			Parent root = loader.load();
     			
     			actualizarGrupoController actualizarGrupo = loader.getController();
@@ -259,6 +334,14 @@ public class mainController implements Initializable{
     @FXML
     void eliminarGrupo(ActionEvent event) {
 
+    	try {
+			
+    		agenda.eliminarGrupo(txtNombreGrupoActualizar.getText());
+    		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
     }
 
     @FXML

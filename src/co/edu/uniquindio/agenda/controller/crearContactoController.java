@@ -30,13 +30,13 @@ public class crearContactoController {
     @FXML
     void crearNuevoContacto(ActionEvent event) {
 
-    	String nombre = (txtNombreContacto.getText() != "") ? txtNombreContacto.getText() : null;
-    	String correo = (txtCorreoContacto.getText() != "") ? txtCorreoContacto.getText() : null;
-    	String direccion = (txtDireccionContacto.getText() != "") ? txtDireccionContacto.getText() : null;
-    	String telefono = (txtTelefonoContacto.getText() != "" ? txtTelefonoContacto.getText() : null);
-    	int edad = (txtEdadContacto.getText() != "") ? Integer.parseInt(txtEdadContacto.getText()) : -1;
-    	
     	try {
+    		
+    		String nombre = (txtNombreContacto.getText() != "") ? txtNombreContacto.getText() : null;
+        	String correo = (txtCorreoContacto.getText() != "") ? txtCorreoContacto.getText() : null;
+        	String direccion = (txtDireccionContacto.getText() != "") ? txtDireccionContacto.getText() : null;
+        	String telefono = (txtTelefonoContacto.getText() != "") ? txtTelefonoContacto.getText() : null;
+        	int edad = (txtEdadContacto.getText() != "") ? Integer.parseInt(txtEdadContacto.getText()) : -1;
 			
     		agenda.crearContacto(nombre, correo, direccion, edad, telefono);
         	

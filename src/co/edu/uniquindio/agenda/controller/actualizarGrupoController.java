@@ -70,7 +70,7 @@ public class actualizarGrupoController implements Initializable{
     			citasProvisionales[indice] = cita;
             	asuntosCitasProvisionales[indice] = cita.getAsunto();
     			
-            	datosAsuntosCitas.addAll(Utils.filtrarNulos(asuntosCitasProvisionales));
+            	datosAsuntosCitas.setAll(Utils.filtrarNulos(asuntosCitasProvisionales));
 			}
     		
 		} catch (Exception e) {
@@ -89,7 +89,7 @@ public class actualizarGrupoController implements Initializable{
 			citasProvisionales[indice] = null;
 			asuntosCitasProvisionales[indice] = null;
 			
-			datosAsuntosCitas.addAll(Utils.filtrarNulos(asuntosCitasProvisionales));
+			datosAsuntosCitas.setAll(Utils.filtrarNulos(asuntosCitasProvisionales));
     		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,7 +107,7 @@ public class actualizarGrupoController implements Initializable{
 			contactosProvisionales[indice] = null;
 			nombresContactosProvisionales[indice] = null;
 			
-			datosNombresContactos.addAll(Utils.filtrarNulos(nombresContactosProvisionales));
+			datosNombresContactos.setAll(Utils.filtrarNulos(nombresContactosProvisionales));
     		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -144,7 +144,7 @@ public class actualizarGrupoController implements Initializable{
             	contactosProvisionales[indice] = contacto;
             	nombresContactosProvisionales[indice] = contacto.getNombre();
     			
-            	datosNombresContactos.addAll(Utils.filtrarNulos(nombresContactosProvisionales));
+            	datosNombresContactos.setAll(Utils.filtrarNulos(nombresContactosProvisionales));
 			}
     		
 		} catch (Exception e) {

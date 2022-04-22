@@ -73,7 +73,16 @@
             </Tab>
             <Tab text="Funcionalidades Extra">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="57.0" layoutY="40.0" mnemonicParsing="false" onAction="#funcionalidad1" text="imprimir contactos posiciones impares" />
+                        <Button layoutX="65.0" layoutY="322.0" mnemonicParsing="false" onAction="#funcionalidad6" text="imprimir nombres contactos inverso" />
+                        <Button layoutX="65.0" layoutY="265.0" mnemonicParsing="false" onAction="#funcionalidad5" text="calcular desviacion estandar edades" />
+                        <Button layoutX="114.0" layoutY="212.0" mnemonicParsing="false" onAction="#funcionalidad4" text="menores de edad" />
+                        <Button layoutX="114.0" layoutY="151.0" mnemonicParsing="false" onAction="#funcionalidad3" text="promedio edades" />
+                        <Button layoutX="110.0" layoutY="99.0" mnemonicParsing="false" onAction="#funcionalidad2" text="edad mas repetida" />
+                        <TextArea fx:id="txtResultadoFuncionalidades" layoutX="343.0" layoutY="30.0" prefHeight="389.0" prefWidth="392.0" />
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>

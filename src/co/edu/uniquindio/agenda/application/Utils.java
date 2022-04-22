@@ -8,7 +8,7 @@ public class Utils {
 
 	public static int obtenerPosicion(Contacto contacto, Contacto[] contactos) throws Exception{
 		
-		if (contactos == null || contacto == null) {
+		if (contactos == null) {
 			throw new Exception("la lista de contactos es nula o el contacto es nulo");
 		}
 		
@@ -48,7 +48,7 @@ public class Utils {
 	
 	public static String[] filtrarNulos(String[] arreglo){
 		
-		String[] arregloFiltrado = new String[obtenerPosicionesNulas(arreglo) - arreglo.length];
+		String[] arregloFiltrado = new String[arreglo.length - obtenerPosicionesNulas(arreglo)];
 		
 		int indice = 0;
 		for (int i = 0; i < arreglo.length; i++) {

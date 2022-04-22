@@ -91,9 +91,8 @@ public class Agenda {
 
     public void crearContacto(String nombre, String correo, String direccion, int edad, String telefono) throws Exception {
 
-
         //Verificamos que el nombre no sea nulo ni sea igual a vacio
-        if (nombre == null || nombre.equals("") || nombre.equals("\0")) {
+        if (nombre == null || nombre.equals("")) {
             throw new ContactoExcepction("El nombre es nulo o vacio");
         }
 
@@ -881,7 +880,8 @@ public class Agenda {
 //  lsdjfldshkfhdskjsdfhgadjsklfsdflafjsdfldsfasdlfhaksljdf
     public void eliminarCita (String nombre)throws Exception{
 
-    	Cita cita = obtenerCita (nombre);
+    	Cita cita;
+    	cita = obtenerCita (nombre);
 
     	if (listaCitas == null){
 
@@ -889,24 +889,19 @@ public class Agenda {
 
     	}
 
-    	if  (cita == null){
+//    	if  (cita == null){
+//
+//    		throw new Exception ("no existe una cita que coincida con el nombre");
+//
+//    	}
 
-    		throw new Exception ("no existe una cita que coincida con el nombre");
-
-    	}
-
-    	cita.setAsunto(null);
-
-    	cita.setFecha(null);
-
-    	cita.setHora(null);
-
-    	cita.setListaContactosCita(null);
-
-    	cita.setAgenda(null);
-
-    	cita.setGrupoCita(null);
+    for (int i = 0; i < listaCitas.length; i++) {
+		
+    	if (cita == listaCitas[i]) {
+			listaCitas[i] = null;
+		}
     	
+	}
     }
     
     public String actualizarGrupo(Grupo grupo, String nombre, Cita[] listaCitasGrupo, Contacto[] listaContactosGrupo) {
@@ -931,20 +926,30 @@ public class Agenda {
      * @param grupo Grupo a eliminar.
      * @throws ContactoExcepction En caso de que el grupo sea nulo.
      */
-    public void eliminarGrupo(Grupo grupo) throws ContactoExcepction {
-        if (listaGrupos != null) {
+    public void eliminarGrupo (String nombre)throws Exception{
 
-            for (int i = 0; i < listaGrupos.length; i++) {
-                if (listaGrupos[i] != null && listaGrupos[i] == grupo) {
-                    grupo.setAgenda(null);
-                    grupo.setListaCitasGrupo(null);
-                    grupo.setListaContactosGrupo(null);
-                    grupo.setNombre(null);
-                }
-            }
-        } else {
-            throw new ContactoExcepction("El grupo a eliminar es nulo");
+        Grupo grupo = obtenerGrupo (nombre);
+
+        if (listaGrupos == null){
+
+            throw new Exception ("la lista de grupos es nula");
+
         }
+
+        if  (grupo == null){
+
+            throw new Exception ("no existe un grupo que coincida con el nombre");
+
+        }
+
+        for (int i = 0; i < listaGrupos.length; i++) {
+			if (grupo == listaGrupos[i]) {
+				listaGrupos[i] = null;
+			}
+		}
+
+ 
+
     }
 
 //    public String actualizarContacto(Contacto contacto, String nombre, String correo, String direccion, int edad, String telefono) {
@@ -1308,7 +1313,7 @@ public class Agenda {
     	
     	public  void crearGrupo(String nombre,Cita [] listaCitasGrupo, Contacto[] listaContactosGrupo) throws Exception {
     		int posicion = obtenerPosicionDisponibleGrupo();
-    		if (verificarNombre (nombre) != true){
+    		if (!verificarNombre (nombre)){
     			throw new Exception ("nombre no válido");
     		}
     		if (listaGrupos == null){

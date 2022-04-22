@@ -67,7 +67,7 @@ public class crearGrupoController implements Initializable {
             	contactosProvisionales[indice] = contacto;
             	nombresContactosProvisionales[indice] = contacto.getNombre();
     			
-            	datosNombresContactos.addAll(Utils.filtrarNulos(nombresContactosProvisionales));
+            	datosNombresContactos.setAll(Utils.filtrarNulos(nombresContactosProvisionales));
 			}
     		
 		} catch (Exception e) {
@@ -86,7 +86,7 @@ public class crearGrupoController implements Initializable {
 			contactosProvisionales[indice] = null;
 			nombresContactosProvisionales[indice] = null;
 			
-			datosNombresContactos.addAll(Utils.filtrarNulos(nombresContactosProvisionales));
+			datosNombresContactos.setAll(Utils.filtrarNulos(nombresContactosProvisionales));
     		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,7 +104,7 @@ public class crearGrupoController implements Initializable {
 			citasProvisionales[indice] = null;
 			asuntosCitasProvisionales[indice] = null;
 			
-			datosAsuntosCitas.addAll(Utils.filtrarNulos(asuntosCitasProvisionales));
+			datosAsuntosCitas.setAll(Utils.filtrarNulos(asuntosCitasProvisionales));
     		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -124,7 +124,7 @@ public class crearGrupoController implements Initializable {
     			citasProvisionales[indice] = cita;
             	asuntosCitasProvisionales[indice] = cita.getAsunto();
     			
-            	datosAsuntosCitas.addAll(Utils.filtrarNulos(asuntosCitasProvisionales));
+            	datosAsuntosCitas.setAll(Utils.filtrarNulos(asuntosCitasProvisionales));
 			}
     		
 		} catch (Exception e) {
@@ -137,7 +137,7 @@ public class crearGrupoController implements Initializable {
     	
     	try {
 			
-    		agenda.crearGrupo(txtNombreContactoCrearGrupo.getText(), Utils.filtrarNulos(citasProvisionales), Utils.filtrarNulos(contactosProvisionales));
+    		agenda.crearGrupo(txtNombreCrearGrupo.getText(), Utils.filtrarNulos(citasProvisionales), Utils.filtrarNulos(contactosProvisionales));
         	
         	stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         	stage.close();
