@@ -137,7 +137,7 @@ public class crearGrupoController implements Initializable {
     	
     	try {
 			
-    		agenda.crearGrupo(txtNombreContactoCrearGrupo.getText(), Utils.filtrarNulos(contactosProvisionales), Utils.filtrarNulos(citasProvisionales));
+    		agenda.crearGrupo(txtNombreContactoCrearGrupo.getText(), Utils.filtrarNulos(citasProvisionales), Utils.filtrarNulos(contactosProvisionales));
         	
         	stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         	stage.close();

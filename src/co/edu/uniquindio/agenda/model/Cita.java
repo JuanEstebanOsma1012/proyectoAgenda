@@ -20,6 +20,24 @@ public class Cita {
 		this.listaContactosCita = new Contacto [tamanioListaContactosCita];
 		this.agenda = agenda;
 	}
+	
+	public Cita (String fecha, String hora, String asunto, Grupo grupoCita, Contacto [] listaContactosCita, Agenda agenda) throws Exception {
+
+		if (asunto == null)
+			throw new Exception("El asunto pasado en el argumento es nulo");
+
+		Agenda auxAgenda = new Agenda();
+
+		String auxFecha= auxAgenda.setearString(fecha);
+		String auxHora = auxAgenda.setearString(hora);
+
+		this.fecha = auxFecha;
+		this.hora = auxHora;
+		this.grupoCita  = grupoCita;
+		this.listaContactosCita = listaContactosCita;
+		this.agenda = agenda;
+		this.asunto = asunto;
+	}
 
 	public String getFecha() {
 		return fecha;

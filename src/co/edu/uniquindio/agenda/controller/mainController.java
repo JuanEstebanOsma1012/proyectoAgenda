@@ -195,7 +195,7 @@ public class mainController implements Initializable{
     	try {
     		
     		datosContactos.setAll(agenda.getListaContactos());
-    		datosNombresContactos.setAll(Utils.extraerNombresContactos(agenda.getListaContactos()));
+    		datosNombresContactos.setAll(Utils.extraerNombresContactos(Utils.filtrarNulos(agenda.getListaContactos())));
     		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -264,12 +264,19 @@ public class mainController implements Initializable{
     @FXML
     void eliminarCita(ActionEvent event) {
 
+    	try {
+			
+    		agenda.eliminarCita(txtAsuntoCitaActualizar.getText());
+    		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
     }
 
     @FXML
     void actualizarCita(ActionEvent event) {
-
-    	Cita cita = agenda.obtenerCita(txtAsuntoCitaActualizar.getText());
+    	
     	if (agenda.existeCita(txtAsuntoCitaActualizar.getText())) {
 			
     		try {
@@ -307,7 +314,7 @@ public class mainController implements Initializable{
 
     	try {
 			
-    		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/FormularioActualizarContacto.fxml"));
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/FormularioCrearCita.fxml"));
     		Parent root = loader.load();
     		
     		crearCitaController crearCita = loader.getController();

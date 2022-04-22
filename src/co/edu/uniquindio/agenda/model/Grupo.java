@@ -6,9 +6,7 @@ public class Grupo {
 	private Cita [] listaCitasGrupo;
 	private Contacto [] listaContactosGrupo;
 	private Agenda agenda;
-	
-	
-	
+
 	public Grupo(String nombre, int tamanioListaCitasGrupo, int tamanioListaContactosGrupo, Agenda agenda) {
 		super();
 		this.nombre = nombre;
@@ -22,6 +20,14 @@ public class Grupo {
 		this.listaCitasGrupo = new Cita [tamanioListaCitasGrupo];
 		this.listaContactosGrupo = new Contacto [tamanioListaContactosGrupo] ;
 	}
+	
+	public Grupo (String nombre, Cita [] listaCitasGrupo, Contacto [] listaContactosGrupo, Agenda agenda){
+		this.nombre = nombre;
+		this.listaCitasGrupo = listaCitasGrupo;
+		this.listaContactosGrupo = listaContactosGrupo;
+		this.agenda = agenda;
+	}
+
 	public Grupo(String nombre) {
 		super();
 		this.nombre = nombre;

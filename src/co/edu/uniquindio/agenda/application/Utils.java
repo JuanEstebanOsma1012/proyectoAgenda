@@ -9,7 +9,7 @@ public class Utils {
 	public static int obtenerPosicion(Contacto contacto, Contacto[] contactos) throws Exception{
 		
 		if (contactos == null || contacto == null) {
-			throw new Exception("datos nulos");
+			throw new Exception("la lista de contactos es nula o el contacto es nulo");
 		}
 		
 		int indice = -1;
@@ -63,7 +63,7 @@ public class Utils {
 
 	public static Contacto[] filtrarNulos(Contacto[] contactos) {
 
-		Contacto[] contactosFiltrados = new Contacto[obtenerPosicionesNulas(contactos) - contactos.length];
+		Contacto[] contactosFiltrados = new Contacto[contactos.length - obtenerPosicionesNulas(contactos)];
 		
 		int indice = 0;
 		for (int i = 0; i < contactos.length; i++) {
@@ -211,5 +211,17 @@ public class Utils {
 		for (int i = 0; i < arregloParaAgregar.length; i++) {
 			arreglo[i] = arregloParaAgregar[i];
 		}
+	}
+
+	public static String[] extraerNombresContactos(Contacto[] listaContactos) {
+
+		String[] nombresContactos = new String[listaContactos.length];
+		for (int i = 0; i < listaContactos.length; i++) {
+			
+			nombresContactos[i] = listaContactos[i].getNombre();
+			
+		}
+		
+		return nombresContactos;
 	}
 }

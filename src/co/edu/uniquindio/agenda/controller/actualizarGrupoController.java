@@ -155,7 +155,11 @@ public class actualizarGrupoController implements Initializable{
     public void asignarAgenda(Agenda agenda, String asuntoGrupoAnterior){
     	
     	this.agenda = agenda;
-    	grupoAnterior = agenda.obtenerGrupo(asuntoGrupoAnterior);
+    	try {
+			grupoAnterior = agenda.obtenerGrupo(asuntoGrupoAnterior);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
     	
     	contactosProvisionales = new Contacto[agenda.getListaContactos().length];
     	nombresContactosProvisionales = new String[contactosProvisionales.length];

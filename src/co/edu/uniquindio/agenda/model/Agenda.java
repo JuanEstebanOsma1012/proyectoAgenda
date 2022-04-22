@@ -3,7 +3,7 @@ package co.edu.uniquindio.agenda.model;
 import java.util.Arrays;
 
 import co.edu.uniquindio.agenda.exception.ContactoExcepction;
-import modeloSantiago.Contacto;
+import co.edu.uniquindio.agenda.model.Contacto;
 
 public class Agenda {
 
@@ -25,8 +25,12 @@ public class Agenda {
     public Agenda(String titulo) {
 
         this.titulo = titulo;
+        this.listaContactos = new Contacto[10];
+        this.listaCitas = new Cita[10];
+        this.listaGrupos = new Grupo[10];
     }
 
+    public Agenda(){}
 
     public String getTitulo() {
         return titulo;
@@ -85,8 +89,7 @@ public class Agenda {
     }
 
 
-    public void crearContacto(String nombre, String correo, String direccion, int edad, String telefono,
-                              Grupo[] listaGruposContacto, Cita[] listaCitasContacto, Agenda agenda) throws Exception {
+    public void crearContacto(String nombre, String correo, String direccion, int edad, String telefono) throws Exception {
 
 
         //Verificamos que el nombre no sea nulo ni sea igual a vacio
@@ -115,7 +118,7 @@ public class Agenda {
 
             existeContacto = existeContacto(nombre);
             if (!existeContacto) {
-                listaContactos[posicionDisponible] = new Contacto(nombre, newCorreo, newDirec, newEdad, newTelefono, listaGruposContacto, listaCitasContacto, this);
+                listaContactos[posicionDisponible] = new Contacto(nombre, newCorreo, newDirec, newEdad, newTelefono, this);
             } else {
                 throw new Exception("Ya existe un contacto con el nombre " + nombre);
             }
@@ -131,7 +134,7 @@ public class Agenda {
         return newEdad;
     }
 
-    private String setearString(String str) {
+    public String setearString(String str) {
         String newString = str;
 
         if (newString == null) {
@@ -777,49 +780,141 @@ public class Agenda {
         return pos;
     }
 
-    public String actualizarCita(Cita cita, String fecha, String hora, String asunto, Grupo grupoCita, Contacto[] listaContactosCita,
-                                 Agenda agenda) {
-        String mensaje = "no hay una lista definida aún";
-        if (listaCitas != null) {
-            for (int i = 0; i < listaCitas.length; i++) {
-                if (listaCitas[i] != null && listaCitas[i] == cita) {
-                    cita.setAsunto(asunto);
-                    cita.setFecha(fecha);
-                    cita.setHora(hora);
-                    cita.setListaContactosCita(listaContactosCita);
-                    cita.setAgenda(agenda);
-                    cita.setGrupoCita(grupoCita);
-                    mensaje = "se ha actualizado con éxito la cita";
-                }
-            }
-        }
-        return mensaje;
-    }
+//    public String actualizarCita(Cita cita, String fecha, String hora, String asunto, Grupo grupoCita, Contacto[] listaContactosCita,
+//                                 Agenda agenda) {
+//        String mensaje = "no hay una lista definida aún";
+//        if (listaCitas != null) {
+//            for (int i = 0; i < listaCitas.length; i++) {
+//                if (listaCitas[i] != null && listaCitas[i] == cita) {
+//                    cita.setAsunto(asunto);
+//                    cita.setFecha(fecha);
+//                    cita.setHora(hora);
+//                    cita.setListaContactosCita(listaContactosCita);
+//                    cita.setAgenda(agenda);
+//                    cita.setGrupoCita(grupoCita);
+//                    mensaje = "se ha actualizado con éxito la cita";
+//                }
+//            }
+//        }
+//        return mensaje;
+//    }
+    
+    public void actualizarCita (String asuntoAntiguo,String fecha, String hora, String asunto, Grupo grupoCita, Contacto [] listaContactosCita,
 
-    public String eliminarCita(Cita cita) {
-        String mensaje = "no hay una lista definida aún";
-        if (listaCitas != null) {
-            for (int i = 0; i < listaCitas.length; i++) {
-                if (listaCitas[i] != null && listaCitas[i] == cita) {
-                    cita.setAsunto(null);
-                    cita.setFecha(null);
-                    cita.setHora(null);
-                    cita.setListaContactosCita(null);
-                    cita.setAgenda(null);
-                    cita.setGrupoCita(null);
-                    mensaje = "se ha eliminado con éxito la cita";
-                }
-            }
-        }
-        return mensaje;
+    		Agenda agenda)throws Exception{
+
+    	Cita cita = obtenerCita (asuntoAntiguo);
+
+    	if (fecha == null){
+
+    		fecha = "";
+
+    	}
+
+    	if (hora == null) {
+
+    		hora = "";
+
+    	}
+
+    	if (listaContactosCita == null){
+
+    		listaContactosCita = new Contacto[0];
+
+    	}
+
+    	if  (listaCitas == null){
+
+    		throw new Exception ("la lista de contactos no existe");
+
+    	}
+
+    	if (cita == null){
+
+    		throw new Exception ("no hay una cita que coincida con el asunto establecido");
+
+    	}
+
+    	if (!verificarNombre (asunto) || asunto == null){
+
+    		throw new Exception ("asunto no válido");
+
+    	}
+
+    	cita.setAsunto(asunto);
+
+    	cita.setFecha(fecha);
+
+    	cita.setHora(hora);
+
+    	cita.setListaContactosCita(listaContactosCita);
+
+    	cita.setAgenda(agenda);
+
+    	cita.setGrupoCita(grupoCita);
+
     }
     
-    public String actualizarGrupo(Grupo grupo, String nombre, Cita[] listaCitasGrupo, Contacto[] listaContactosGrupo, Agenda agenda) {
+//    public Cita obtenerCita (String asunto) throws Exception{
+//
+//        Cita cita = null;
+//
+//        if (listaCitas == null){
+//
+//            throw new Exception ("la lista de Citas es nula");
+//
+//        }
+//
+//        for (int i=0; i<listaCitas.length;i++){
+//
+//            if (listaCitas [i] != null && listaCitas[i].getAsunto().equals(asunto)){
+//
+//                cita = listaCitas [i];
+//
+//            }
+//
+//        }
+//
+//        return cita;
+//
+//    }
+//  lsdjfldshkfhdskjsdfhgadjsklfsdflafjsdfldsfasdlfhaksljdf
+    public void eliminarCita (String nombre)throws Exception{
+
+    	Cita cita = obtenerCita (nombre);
+
+    	if (listaCitas == null){
+
+    		throw new Exception ("la lista de Citas es nula");
+
+    	}
+
+    	if  (cita == null){
+
+    		throw new Exception ("no existe una cita que coincida con el nombre");
+
+    	}
+
+    	cita.setAsunto(null);
+
+    	cita.setFecha(null);
+
+    	cita.setHora(null);
+
+    	cita.setListaContactosCita(null);
+
+    	cita.setAgenda(null);
+
+    	cita.setGrupoCita(null);
+    	
+    }
+    
+    public String actualizarGrupo(Grupo grupo, String nombre, Cita[] listaCitasGrupo, Contacto[] listaContactosGrupo) {
         String mensaje = "no hay una lista de grupos definida aún";
         if (listaGrupos != null) {
             for (int i = 0; i < listaGrupos.length; i++) {
                 if (listaGrupos[i] != null && listaGrupos[i] == grupo) {
-                    grupo.setAgenda(agenda);
+                    grupo.setAgenda(this);
                     grupo.setListaCitasGrupo(listaCitasGrupo);
                     grupo.setListaContactosGrupo(listaContactosGrupo);
                     grupo.setNombre(nombre);
@@ -852,26 +947,78 @@ public class Agenda {
         }
     }
 
-    public String actualizarContacto(Contacto contacto, String nombre, String correo, String direccion, int edad, String telefono,
-                                     Grupo[] listaGruposContacto, Cita[] listaCitasContacto, Agenda agenda) {
-        String mensaje = "no hay lista de contactos aún";
-        if (listaContactos != null) {
-            for (int i = 0; i < listaContactos.length; i++) {
-                if (listaContactos[i] != null && listaContactos[i] == contacto) {
-                    contacto.setAgenda(agenda);
-                    contacto.setCorreo(correo);
-                    contacto.setDireccion(direccion);
-                    contacto.setEdad(edad);
-                    contacto.setListaCitasContacto(listaCitasContacto);
-                    contacto.setListaGruposContacto(listaGruposContacto);
-                    contacto.setNombre(nombre);
-                    contacto.setTelefono(telefono);
-                    mensaje = "se ha actualizado con éxito";
-                }
-            }
+//    public String actualizarContacto(Contacto contacto, String nombre, String correo, String direccion, int edad, String telefono) {
+//        String mensaje = "no hay lista de contactos aún";
+//        if (listaContactos != null) {
+//            for (int i = 0; i < listaContactos.length; i++) {
+//                if (listaContactos[i] != null && listaContactos[i] == contacto) {
+//                    contacto.setAgenda(this);
+//                    contacto.setCorreo(correo);
+//                    contacto.setDireccion(direccion);
+//                    contacto.setEdad(edad);
+//                    contacto.setNombre(nombre);
+//                    contacto.setTelefono(telefono);
+//                    mensaje = "se ha actualizado con éxito";
+//                }
+//            }
+//        }
+//        return mensaje;
+//    }
+    
+    public  void actualizarContacto (Contacto contacto, String nombre, String direccion, String correo, String telefono, int edad)throws Exception{
+
+        if (contacto == null){
+
+            throw new Exception ("el contacto enviado es nulo");
+
         }
-        return mensaje;
-    }
+
+        if (verificarNombre(nombre) != true){
+
+            throw new Exception ("el nombre ingresado no es válido");
+
+        }
+
+        if (direccion == null){
+
+            direccion = "";
+
+        }
+
+        if (correo == null){
+
+            correo = "";
+
+        }
+
+        if (telefono == null){
+
+            telefono = "";
+
+        }
+
+        if (edad == -1){
+
+            edad = 0;
+
+        }
+
+        if (listaContactos == null) {
+
+            throw new Exception("La lista no esta definida");
+
+        }
+
+        for (int i = 0; i<listaContactos.length;i++){
+
+            if (listaContactos[i]!= null && listaContactos[i] == contacto){
+                contacto.setCorreo(correo);
+                contacto.setNombre(nombre);
+                contacto.setEdad(edad);
+                contacto.setDireccion(direccion);
+                contacto.setTelefono(telefono);
+            }}
+        }
 
     public String eliminarContacto(Contacto contacto) {
         String mensaje = "no hay lista de contactos aún";
@@ -893,17 +1040,17 @@ public class Agenda {
         return mensaje;
     }
 
-    public Contacto obtenerContactoDadoNombre(String nombre) {
-        Contacto contactoEncontrado = null;
-        if (listaContactos != null) {
-            for (int i = 0; i < listaContactos.length; i++) {
-                if (listaContactos[i] != null && listaContactos[i].getNombre().equals(nombre)) {
-                    contactoEncontrado = listaContactos[i];
-                }
-            }
-        }
-        return contactoEncontrado;
-    }
+//    public Contacto obtenerContactoDadoNombre(String nombre) {
+//        Contacto contactoEncontrado = null;
+//        if (listaContactos != null) {
+//            for (int i = 0; i < listaContactos.length; i++) {
+//                if (listaContactos[i] != null && listaContactos[i].getNombre().equals(nombre)) {
+//                    contactoEncontrado = listaContactos[i];
+//                }
+//            }
+//        }
+//        return contactoEncontrado;
+//    }
 
     /**
      * mètodo que retorna mensaje explicando si la agenda esta llena
@@ -1112,10 +1259,9 @@ public class Agenda {
 	   boolean yaExiste = false;
 	   if (listaCitas != null){
 	      for (int i=0; i<listaCitas.length;i++){
-	         if (listaCitas[i]!= null){
-	            if (listaCitas[i].getAsunto().equals (asunto)){
+	         if (listaCitas[i]!= null && listaCitas[i].getAsunto().equals (asunto)){
 	               yaExiste = true;
-	            }
+	           
 	         }
 	      }
 	   }
@@ -1146,5 +1292,119 @@ public class Agenda {
     		}
     		return contactoEncontrado;
     	}
+    	
+    	public Grupo obtenerGrupo(String nombre) throws Exception{
+    		Grupo grupo = null;
+    		if (listaGrupos == null){
+    			throw new Exception ("la lista de grupos es nula");
+    		}
+    		for (int i=0; i<listaGrupos.length;i++){
+    			if (listaGrupos [i]!= null &&listaGrupos[i].getNombre().equals(nombre)){
+    				grupo = listaGrupos [i];
+    			}
+    		}
+    		return grupo;
+		}
+    	
+    	public  void crearGrupo(String nombre,Cita [] listaCitasGrupo, Contacto[] listaContactosGrupo) throws Exception {
+    		int posicion = obtenerPosicionDisponibleGrupo();
+    		if (verificarNombre (nombre) != true){
+    			throw new Exception ("nombre no válido");
+    		}
+    		if (listaGrupos == null){
+    			throw new Exception ("la lista de grupos es nula");
+    		}
+    		if (posicion==-1){
+    			throw new Exception ("la agenda está llena de grupos, no le caben mas");
+    		}
+    		if (verificarExisteGrupo (nombre) == true){
+    			throw new Exception ("el grupo ya existe, no se puede repetir");
+    		}
+    		listaGrupos [posicion]= new Grupo (nombre,listaCitasGrupo,listaContactosGrupo,this);
+		}
+    	
+    	public  boolean verificarNombre(String nombre){
+    		boolean esValido = true;
 
+    		if (nombre.equals("")||nombre.equals(" ")){
+    			esValido = false;
+    		}
+    		return esValido;
+		}
+    	
+    	public void crearCita(String fecha, String hora, String asunto, Grupo grupoCita, Contacto [] listaContactosCita) throws Exception{
+    		int  posicion =obtenerPosicionDisponibleCitas();
+    		if (verificarNombre (asunto) != true){
+    			throw new Exception ("asunto no válido");
+    		}
+    		if  (listaCitas == null){
+    			throw new Exception ("la lista de Citas es nula");
+    		}
+    		if (posicion == -1){
+    			throw new Exception ("la agenda está llena de Citas, no le caben mas");
+    		}
+    		if (verificarExisteCitaPorAsunto (asunto)){
+    			throw new Exception ("la cita ya existe, no se puede repetir");
+    		}
+    		listaCitas [posicion]= new Cita(fecha, hora, asunto, grupoCita, listaContactosCita, this);
+    	}
+
+    	private boolean verificarExisteCitaPorAsunto(String asunto) {
+    		boolean yaExiste = false;
+    		if (listaCitas != null){
+    			for (int i=0; i<listaCitas.length; i++){
+    				if (listaCitas[i] !=null){
+    					if (listaCitas [i].getAsunto() != null) {
+							if (listaCitas[i].getAsunto().equals(asunto)) {
+								yaExiste = true;
+							}
+						}
+    				}
+    			}
+    		}
+    		return yaExiste;
+    	}
+
+    	public void crearCita(String fecha, String hora, String asunto, Grupo grupoCita, Contacto [] listaContactosCita,
+    			Agenda agenda) throws Exception{
+    		int  posicion =obtenerPosicionDisponibleCitas();
+    		if (verificarNombre (asunto) != true){
+    			throw new Exception ("asunto no válido");
+    		}
+    		if  (listaCitas != null){
+    			throw new Exception ("la lista de Citas es nula");
+    		}
+    		if (posicion == -1){
+    			throw new Exception ("la agenda está llena de Citas, no le caben mas");
+    		}
+    		if (verificarExisteCitaPorAsunto (asunto)!= true){
+    			throw new Exception ("la cita ya existe, no se puede repetir");
+    		}
+    		listaCitas [posicion]= new Cita (fecha, hora, asunto, grupoCita, listaContactosCita,agenda);
+    	}
+
+    	/**
+         * Método que obtiene una cita dado su asunto.
+         * @param asunto String representativo del Objeto Cita.
+         * @return Cita de encontrar la cita con el String @asunto. Null de no encontrar nada
+         * @throws CitaException
+         */
+        public Cita obtenerCita(String asunto) throws Exception {
+            Cita auxCita = null;
+
+            if (asunto == null)
+                throw new Exception("El asunto pasado en el argumento es nulo");
+
+            for (Cita cita : listaCitas) {
+
+                if (cita != null && cita.getAsunto().equals(asunto))
+                    auxCita= cita;
+            }
+
+            if (auxCita == null)
+                throw new Exception();
+
+            return auxCita;
+        }
+    	
 }

@@ -38,7 +38,7 @@ public class crearContactoController {
     	
     	try {
 			
-    		agenda.crearContacto(nombre, correo, direccion, telefono, edad);
+    		agenda.crearContacto(nombre, correo, direccion, edad, telefono);
         	
         	stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         	stage.close();

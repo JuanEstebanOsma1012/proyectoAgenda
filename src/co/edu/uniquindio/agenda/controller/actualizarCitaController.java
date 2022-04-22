@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -63,7 +64,7 @@ public class actualizarCitaController implements Initializable{
 
     	try {
     		
-    		Grupo grupo = agenda.obtenerGrupo(txtNombreGrupoActualizarCita.getText());
+    		Grupo grupo = agenda.obtenerGrupoDadoNombre(txtNombreGrupoActualizarCita.getText());
     
     		if (!(grupo == grupoProvisional)) {
     			
@@ -139,6 +140,22 @@ public class actualizarCitaController implements Initializable{
     @FXML
     void actualizarCita(ActionEvent event) {
 
+    	try {
+			
+    		String fecha = (txtFechaActualizarCita.getText() != "") ? txtFechaActualizarCita.getText() : null;
+        	String hora = (txtHoraActualizarCita.getText() != "") ? txtHoraActualizarCita.getText() : null;
+        	String asunto = (txtAsuntoActualizarCita.getText() != "") ? txtAsuntoActualizarCita.getText() : null;
+        	Grupo grupoCita = agenda.obtenerGrupo(txtGrupoActualizarCita.getText());
+    		
+    		agenda.actualizarCita(citaAnterior.getAsunto(), fecha, hora, asunto, grupoCita, contactosProvisionales, agenda);
+    		
+    		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    		stage.close();
+    		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
     }
     
     public void asignarAgenda(Agenda agenda, String asuntoCitaAnterior){
